@@ -13,6 +13,7 @@ defmodule FastIntegerCompressionTest.UtilsTest do
       assert Utils.bytelog(2) == 1
       assert Utils.bytelog(1_000) == 2
       assert Utils.bytelog(10_000) == 2
+      assert Utils.bytelog(21_312) == 3
       assert Utils.bytelog(100_000_000) == 4
       assert Utils.bytelog(21_312_312_312_312_312_312) == 5
     end
