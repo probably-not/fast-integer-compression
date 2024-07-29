@@ -16,8 +16,4 @@ defmodule FastIntegerCompression.Unsigned do
       acc -> acc + Utils.bytelog(v)
     end
   end
-
-  def expected_decompressed_size(_lst) do
-    0
-  end
 end

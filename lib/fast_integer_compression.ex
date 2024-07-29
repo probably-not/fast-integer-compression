@@ -30,8 +30,8 @@ defmodule FastIntegerCompression do
   @spec expected_compressed_size(lst :: integer_list()) :: non_neg_integer()
   def expected_compressed_size(lst), do: pipe(lst, :expected_compressed_size)
 
-  @spec expected_decompressed_size(lst :: integer_list()) :: non_neg_integer()
-  def expected_decompressed_size(lst), do: pipe(lst, :expected_decompressed_size)
+  @spec expected_number_of_integers(lst :: integer_list()) :: non_neg_integer()
+  def expected_number_of_integers(_lst), do: 0
 
   @spec get_integer_type_from_list(lst :: integer_list()) :: integer_type()
   defp get_integer_type_from_list(lst) do

@@ -16,8 +16,4 @@ defmodule FastIntegerCompression.Signed do
       acc -> acc + Utils.bytelog(Utils.zigzag_encode(v))
     end
   end
-
-  def expected_decompressed_size(_lst) do
-    0
-  end
 end
