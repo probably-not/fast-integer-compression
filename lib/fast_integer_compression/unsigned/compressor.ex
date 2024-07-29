@@ -3,6 +3,7 @@ defmodule FastIntegerCompression.Unsigned.Compressor do
 
   import Bitwise
 
+  @spec compress(list(non_neg_integer())) :: bitstring()
   def compress(lst) do
     size = FastIntegerCompression.Unsigned.expected_compressed_size(lst)
     arr = :array.new(size, [])

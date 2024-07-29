@@ -2,17 +2,13 @@ defmodule FastIntegerCompression.Unsigned do
   @moduledoc false
 
   alias __MODULE__
-  alias FastIntegerCompression.Utils
 
+  @spec compress(list(non_neg_integer())) :: bitstring()
   defdelegate compress(lst), to: Unsigned.Compressor
 
-  def uncompress(_lst) do
-    []
-  end
+  @spec decompress(bitstring()) :: list(non_neg_integer())
+  defdelegate decompress(buf), to: Unsigned.Decompressor
 
-  def expected_compressed_size(lst) do
-    for v <- lst, reduce: 0 do
-      acc -> acc + Utils.bytelog(v)
-    end
-  end
+  @spec expected_compressed_size(list(non_neg_integer())) :: non_neg_integer()
+  defdelegate expected_compressed_size(buf), to: Unsigned.Sizer
 end
