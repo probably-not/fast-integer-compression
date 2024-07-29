@@ -17,6 +17,8 @@ defmodule FastIntegerCompression do
   in order to select the correct compression type.
   """
 
+  import Bitwise
+
   @type integer_list() :: list(integer())
   @typep integer_type() :: :signed | :unsigned
   @typep compression_mod() :: FastIntegerCompression.Signed | FastIntegerCompression.Unsigned
@@ -31,7 +33,14 @@ defmodule FastIntegerCompression do
   def expected_compressed_size(lst), do: pipe(lst, :expected_compressed_size)
 
   @spec expected_number_of_integers(lst :: integer_list()) :: non_neg_integer()
-  def expected_number_of_integers(_lst), do: 0
+  def expected_number_of_integers(lst) do
+    c =
+      for v <- lst, reduce: 0 do
+        acc -> acc + (v >>> 7)
+      end
+
+    length(lst) - c
+  end
 
   @spec get_integer_type_from_list(lst :: integer_list()) :: integer_type()
   defp get_integer_type_from_list(lst) do
