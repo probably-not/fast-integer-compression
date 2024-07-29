@@ -11,7 +11,7 @@ defmodule FastIntegerCompressionTest.UnsignedTest do
     assert Unsigned.expected_compressed_size([
              10,
              100_000,
-             65999,
+             65_999,
              10,
              10,
              0,

@@ -8,6 +8,6 @@ defmodule FastIntegerCompressionTest.SignedTest do
   end
 
   test "expected_compressed_size" do
-    assert Signed.expected_compressed_size([10, 100_000, 65999, 10, 10, 0, -1, -1, -2000]) == 14
+    assert Signed.expected_compressed_size([10, 100_000, 65_999, 10, 10, 0, -1, -1, -2000]) == 14
   end
 end
