@@ -11,10 +11,6 @@ defmodule FastIntegerCompression do
   These are optimized to compress either signed or unsigned integers. However, they assume that the user has validated
   that the integers are all correctly signed - i.e. if using `FastIntegerCompression.Signed`, you may have both positive
   and negative integers, however, using `FastIntegerCompression.Unsigned`, you must have only positive integers.
-
-  If your list can be dynamic and you do not know that it is signed or unsigned from the onset,
-  then using the `FastIntegerCompression` functions will validate the integer types within the list
-  in order to select the correct compression type.
   """
 
   import Bitwise
