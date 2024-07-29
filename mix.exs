@@ -15,7 +15,7 @@ defmodule FastIntegerCompression.MixProject do
       homepage_url: "https://github.com/probably-not/fast-integer-compression",
       package: [
         maintainers: ["Coby Benveniste"],
-        licenses: ["Apache 2.0"],
+        licenses: ["Apache-2.0"],
         links: %{"GitHub" => "https://github.com/probably-not/fast-integer-compression"},
         files: ["lib", "mix.exs", "README*", "LICENSE*", "CHANGELOG*"]
       ],
