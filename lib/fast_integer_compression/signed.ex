@@ -1,19 +1,14 @@
 defmodule FastIntegerCompression.Signed do
   @moduledoc false
 
-  alias FastIntegerCompression.Utils
+  alias __MODULE__
 
-  def compress(_lst) do
-    []
-  end
+  @spec compress(list(integer())) :: bitstring()
+  defdelegate compress(lst), to: Signed.Compressor
 
-  def uncompress(_lst) do
-    []
-  end
+  @spec decompress(bitstring()) :: list(integer())
+  defdelegate decompress(buf), to: Signed.Decompressor
 
-  def expected_compressed_size(lst) do
-    for v <- lst, reduce: 0 do
-      acc -> acc + Utils.bytelog(Utils.zigzag_encode(v))
-    end
-  end
+  @spec expected_compressed_size(list(integer())) :: non_neg_integer()
+  defdelegate expected_compressed_size(buf), to: Signed.Sizer
 end
