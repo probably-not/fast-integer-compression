@@ -58,6 +58,7 @@ defmodule FastIntegerCompression.MixProject do
 
   defp aliases do
     [
+      check_node: ["cmd node node/checks.js"],
       quality: ["format", "credo --strict", "dialyzer"],
       ci: ["coveralls", "format --check-formatted", "credo --strict", "dialyzer"]
     ]

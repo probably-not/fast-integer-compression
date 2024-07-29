@@ -8,7 +8,7 @@ async function main(_params) {
   console.log(size);
 }
 
-params = {};
+const params = {};
 main(params)
   .then(() => {
     console.log("Completed checks");
