@@ -17,6 +17,10 @@ defmodule FastIntegerCompression do
 
   @spec expected_number_of_integers(buf :: binary()) :: non_neg_integer()
   def expected_number_of_integers(buf) do
+    # TODO: Similar to the decompression functions,
+    # we can probably implement a reduce here that works
+    # on the actual binary using unsigned-integer-8
+    # since the original implementation assumes a Uint8Array.
     lst = :erlang.binary_to_list(buf)
 
     c =
