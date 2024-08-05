@@ -24,6 +24,6 @@ defmodule FastIntegerCompression do
         acc -> acc + (v >>> 7)
       end
 
-    length(lst) - c
+    byte_size(buf) - c
   end
 end
