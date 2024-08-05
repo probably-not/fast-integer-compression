@@ -15,9 +15,9 @@ defmodule FastIntegerCompression do
 
   import Bitwise
 
-  @spec expected_number_of_integers(buf :: bitstring()) :: non_neg_integer()
+  @spec expected_number_of_integers(buf :: binary()) :: non_neg_integer()
   def expected_number_of_integers(buf) do
-    lst = :erlang.bitstring_to_list(buf)
+    lst = :erlang.binary_to_list(buf)
 
     c =
       for v <- lst, reduce: 0 do

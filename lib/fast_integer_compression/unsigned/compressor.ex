@@ -3,7 +3,7 @@ defmodule FastIntegerCompression.Unsigned.Compressor do
 
   import Bitwise
 
-  @spec compress(list(non_neg_integer())) :: bitstring()
+  @spec compress(list(non_neg_integer())) :: binary()
   def compress(lst) do
     size = FastIntegerCompression.Unsigned.expected_compressed_size(lst)
     arr = :array.new(size, [])
@@ -11,7 +11,7 @@ defmodule FastIntegerCompression.Unsigned.Compressor do
     Enum.reduce(lst, {arr, 0}, &do_compress/2)
     |> elem(0)
     |> :array.to_list()
-    |> :erlang.list_to_bitstring()
+    |> :erlang.list_to_binary()
   end
 
   defp do_compress(val, {arr, pos}) when val < 1 <<< 7 do

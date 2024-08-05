@@ -1,7 +1,7 @@
 defmodule FastIntegerCompression.Unsigned.Decompressor do
   @moduledoc false
 
-  @spec decompress(bitstring()) :: list(non_neg_integer())
+  @spec decompress(binary()) :: list(non_neg_integer())
   def decompress(buf) do
     lst = :erlang.bitstring_to_list(buf)
     size = :erlang.size(buf)
