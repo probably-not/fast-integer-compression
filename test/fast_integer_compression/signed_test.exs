@@ -29,7 +29,8 @@ defmodule FastIntegerCompressionTest.SignedTest do
       count = :rand.uniform(1000)
 
       original =
-        Stream.repeatedly(fn -> System.unique_integer([]) end) |> Enum.take(count)
+        Stream.repeatedly(fn -> Enum.random(-2_000_000_000..2_000_000_000//1) end)
+        |> Enum.take(count)
 
       expected_size = Signed.expected_compressed_size(original)
       compressed = Signed.compress(original)

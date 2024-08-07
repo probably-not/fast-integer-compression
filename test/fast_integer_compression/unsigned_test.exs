@@ -29,7 +29,7 @@ defmodule FastIntegerCompressionTest.UnsignedTest do
       count = :rand.uniform(1000)
 
       original =
-        Stream.repeatedly(fn -> System.unique_integer([:positive]) end) |> Enum.take(count)
+        Stream.repeatedly(fn -> Enum.random(0..2_000_000_000//1) end) |> Enum.take(count)
 
       expected_size = Unsigned.expected_compressed_size(original)
       compressed = Unsigned.compress(original)
