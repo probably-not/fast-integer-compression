@@ -24,7 +24,7 @@ defmodule FastIntegerCompressionTest.SignedTest do
     assert ^original = decompressed
   end
 
-  for i <- 1..50//1 do
+  for i <- 1..500//1 do
     test "fuzzish_#{i}" do
       count = :rand.uniform(1000)
 
