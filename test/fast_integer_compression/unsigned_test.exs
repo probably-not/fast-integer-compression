@@ -34,16 +34,20 @@ defmodule FastIntegerCompressionTest.UnsignedTest do
     assert ^original = decompressed
   end
 
-  test "fuzzish" do
-    count = :rand.uniform(1000)
-    original = Stream.repeatedly(fn -> System.unique_integer([:positive]) end) |> Enum.take(count)
+  for i <- 1..50//1 do
+    test "fuzzish_#{i}" do
+      count = :rand.uniform(1000)
 
-    expected_size = Unsigned.expected_compressed_size(original)
-    compressed = Unsigned.compress(original)
-    decompressed = Unsigned.decompress(compressed)
+      original =
+        Stream.repeatedly(fn -> System.unique_integer([:positive]) end) |> Enum.take(count)
 
-    assert byte_size(compressed) == expected_size
-    assert FastIntegerCompression.expected_number_of_integers(compressed) == count
-    assert ^original = decompressed
+      expected_size = Unsigned.expected_compressed_size(original)
+      compressed = Unsigned.compress(original)
+      decompressed = Unsigned.decompress(compressed)
+
+      assert byte_size(compressed) == expected_size
+      assert FastIntegerCompression.expected_number_of_integers(compressed) == count
+      assert ^original = decompressed
+    end
   end
 end
