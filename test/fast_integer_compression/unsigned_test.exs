@@ -21,4 +21,16 @@ defmodule FastIntegerCompressionTest.UnsignedTest do
              0xFFFFFFFF
            ]) == 19
   end
+
+  test "compression" do
+    compressed = Unsigned.compress([10, 100_000, 65_999, 10, 10, 0, 1, 1, 2000, 0xFFFFFFFF])
+    assert byte_size(compressed) == 19
+  end
+
+  test "decompression" do
+    original = [10, 100_000, 65_999, 10, 10, 0, 1, 1, 2000, 0xFFFFFFFF]
+    compressed = Unsigned.compress(original)
+    decompressed = Unsigned.decompress(compressed)
+    assert match?(original, decompressed)
+  end
 end
