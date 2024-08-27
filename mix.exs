@@ -4,7 +4,7 @@ defmodule FastIntegerCompression.MixProject do
   def project do
     [
       app: :fast_integer_compression,
-      version: "0.0.0",
+      version: "1.0.0",
       elixir: "~> 1.16",
       start_permanent: Mix.env() == :prod,
       elixirc_paths: elixirc_path(Mix.env()),
