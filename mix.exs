@@ -33,7 +33,8 @@ defmodule FastIntegerCompression.MixProject do
     ]
   end
 
-  defp elixirc_path(:test), do: ["lib/", "test/support"]
+  defp elixirc_path(:test), do: ["lib/", "test/support", "bench/"]
+  defp elixirc_path(:dev), do: ["lib/", "bench/"]
   defp elixirc_path(_), do: ["lib/"]
 
   def application do
@@ -52,7 +53,9 @@ defmodule FastIntegerCompression.MixProject do
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.18", only: :test},
       {:remixed_remix, "~> 2.0.2", only: :dev},
-      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false}
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
+      {:benchee, "~> 1.0", only: :dev},
+      {:benchee_markdown, "~> 0.3", only: :dev}
     ]
   end
 
