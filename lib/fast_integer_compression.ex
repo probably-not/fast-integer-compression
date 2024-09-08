@@ -4,23 +4,19 @@ defmodule FastIntegerCompression do
   The use case for this is to be able to compress things on the server side, and then push them to the frontend,
   where they can be properly decompressed, and vice versa.
 
-  The Fast Integer Compression algorithm uses VByte compression in order to compress a list of small integers into
-  an array that uses far less bytes than the original.
-
-  The fastest path is using the submodules, `FastIntegerCompression.Signed` and `FastIntegerCompression.Unsigned`.
-  These are optimized to compress either signed or unsigned integers. However, they assume that the user has validated
-  that the integers are all correctly signed - i.e. if using `FastIntegerCompression.Signed`, you may have both positive
-  and negative integers, however, using `FastIntegerCompression.Unsigned`, you must have only positive integers.
+  The Fast Integer Compression algorithm uses VByte compression in order to compress a list of 32-bit integers into
+  an array that uses far less bytes than the original. Integers may be signed or unsigned. Unsigned integers will be
+  compressed directly, while signed integers will be encoded using zigzag encoding in order to compress them properly.
   """
 
   import Bitwise
 
+  @doc """
+  Given a buffer of bytes that have been encoded via the Fast Integer Compression VByte compression algorithm,
+  `expected_number_of_integers` will calculate how many integers should be in the decompressed list.
+  """
   @spec expected_number_of_integers(buf :: binary()) :: non_neg_integer()
   def expected_number_of_integers(buf) do
-    # TODO: Similar to the decompression functions,
-    # we can probably implement a reduce here that works
-    # on the actual binary using unsigned-integer-8
-    # since the original implementation assumes a Uint8Array.
     lst = :erlang.binary_to_list(buf)
 
     c =
